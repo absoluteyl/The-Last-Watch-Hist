@@ -1,0 +1,3 @@
+[submodule "tlwh-contract"]
+	path = tlwh-contract
+	url = git@github.com-absoluteyl:absoluteyl/tlwh-contract.git
