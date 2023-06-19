@@ -26,15 +26,18 @@ title: Minting tLWH NFT
 
 sequenceDiagram
   participant U as User
-  participant W as tLWH Server
+  participant S as tLWH Server
   participant C as tLWH Contract
   participant I as IPFS
 
-  U->>W: Requests to mint NFT
-  W->>C: Calls mint function
+  U->>S: Requests to mint NFT
+  S->>I: Upload User Meta to IPFS
+  I->>S: Return file hash
+  S->>C: Calls mint function with IPFS hash
   C->>C: mint
-  C->>W: Emits mint event
-  W->>I: Upload User Meta with NFT Info
+  C->>C: setTokenURI
+  C->>S: Emits mint event
+  C->>S: Emits MetadataUpdated event
 ```
 
 ```mermaid
@@ -45,17 +48,17 @@ title: Sync Watch History
 sequenceDiagram
   participant U as User
   participant O as OTT Platform
-  participant W as tLWH Server
+  participant S as tLWH Server
   participant I as IPFS
   participant C as tLWH Contract
 
   U->>O: Watch Movie/TV Series
-  W->>O: Retrieves Watch History
-  O->>W: Response
-  W->>I: Upload New Watch History
-  I->>W: New file hash
-  W->>C: Update file hash
-  C->>W: Emit update event
+  S->>O: Retrieves Watch History
+  O->>S: Response
+  S->>I: Upload New Watch History
+  I->>S: New file hash
+  S->>C: Update file hash
+  C->>S: Emit update event
 
 ```
 
