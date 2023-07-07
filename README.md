@@ -49,31 +49,22 @@ sequenceDiagram
   participant U as User
   participant O as OTT Platform
   participant S as tLWH Server
-  participant I as IPFS
-  participant C as tLWH Contract
 
   U->>O: Watch Movie/TV Series
   S->>O: Retrieves Watch History
   O->>S: Response
-  S->>I: Upload New Watch History
-  I->>S: New file hash
-  S->>C: Update file hash
-  C->>S: Emit update event
+  S->>U: Display Watch History
 
 ```
 
 ## Development
 
-Include step-by-step instructions on how to set up and run the project.
-.env.example
-command example
-If this project includes BE or FE, provide instructions for those as well.
+See Readme in each components.
 
 ## Testing
 
-Explain how to run the tests.
-[Nice to have] 80% or more coverage.
+See Readme in each components.
 
 ## Usage
 
-Explain how to use the project and provide examples or code snippets to demonstrate its usage.
+See Readme in each components.
